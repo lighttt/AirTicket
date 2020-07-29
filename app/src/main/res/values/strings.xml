@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">AirTicket</string>
+    <string name="passenger_label">PASSENGER</string>
+    <string name="passenger_name">Mr. Manish Tuladhar</string>
+    <string name="origin_label">TIA</string>
+    <string name="destination_label">PKR</string>
+    <string name="boarding_time_label">Boarding Time</string>
+    <string name="boarding_time">01:51 PM</string>
+    <string name="departure_label">Departure</string>
+    <string name="departure_time">2:00 PM</string>
+
+    <string name="boarding_in_time_label">Boarding In</string>
+    <string name="boarding_in_time">00:15</string>
+    <string name="arrival_time">3:00 PM</string>
+    <string name="arrival_label">Arrival</string>
+    <string name="flight_code">NPL 4356</string>
+    <string name="terminal_label">TERMINAL</string>
+    <string name="terminal">1</string>
+    <string name="gate_number">4B</string>
+    <string name="gate">Gate</string>
+    <string name="seat_number">21A</string>
+    <string name="seat">Seat</string>
+
+
 </resources>
