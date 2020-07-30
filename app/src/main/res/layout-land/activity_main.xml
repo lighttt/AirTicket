@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="airticket"
+            type="np.com.manishtuladhar.airticket.AirTicketPass" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            tools:context=".MainActivity">
+
+            <!--    =============== Passenger View =======================-->
+
+            <TextView
+                android:id="@+id/tvPassengerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:letterSpacing="0.5"
+                android:text="@string/passenger_label"
+                app:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_creator="1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPassengerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{airticket.passengerName}"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="31sp"
+                app:layout_constraintLeft_toRightOf="@id/tvPassengerLabel"
+                app:layout_constraintTop_creator="1"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvPassengerLabel" />
+
+
+            <!--    =============== Flight View =======================-->
+            <include
+                android:id="@+id/flight_info"
+                layout="@layout/flight_info"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPassengerName"
+                app:layout_constraintRight_toLeftOf="@id/tvDepartureLabel"
+                android:layout_marginTop="32dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <!--    =============== Boarding Time View =======================-->
+
+            <TextView
+                android:id="@+id/tvBoardingTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:letterSpacing="0.3"
+                android:text="@string/boarding_time_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textAllCaps="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flight_info" />
+
+            <TextView
+                android:id="@+id/tvBoardingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boarding_time"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/black"
+                app:layout_constraintLeft_toLeftOf="@id/tvBoardingTimeLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvBoardingTimeLabel" />
+
+            <TextView
+                android:id="@+id/tvDepartureLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="75dp"
+                android:letterSpacing="0.3"
+                android:text="@string/departure_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textAllCaps="true"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/flight_info"
+                app:layout_constraintTop_toBottomOf="@id/tvPassengerName" />
+
+            <TextView
+                android:id="@+id/tvDeparture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/departure_time"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@android:color/holo_green_dark"
+                app:layout_constraintLeft_toLeftOf="@id/tvDepartureLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvDepartureLabel" />
+
+
+            <TextView
+                android:id="@+id/tvBoardingInTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:letterSpacing="0.3"
+                android:text="@string/boarding_in_time_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textAllCaps="true"
+                app:layout_constraintLeft_toRightOf="@id/tvBoardingTimeLabel"
+                app:layout_constraintTop_toTopOf="@id/tvBoardingTimeLabel" />
+
+            <TextView
+                android:id="@+id/tvBoardingInTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boarding_in_time"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/holo_red_dark"
+                app:layout_constraintLeft_toLeftOf="@id/tvBoardingInTimeLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvBoardingInTimeLabel" />
+
+            <TextView
+                android:id="@+id/tvArrivalTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:letterSpacing="0.3"
+                android:text="@string/arrival_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textAllCaps="true"
+                app:layout_constraintLeft_toLeftOf="@id/tvDeparture"
+                app:layout_constraintTop_toBottomOf="@id/tvDeparture" />
+
+            <TextView
+                android:id="@+id/tvArrivalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/arrival_time"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@android:color/holo_green_dark"
+                app:layout_constraintLeft_toLeftOf="@id/tvArrivalTimeLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvArrivalTimeLabel" />
+
+
+            <!--    =============== Table View =======================-->
+            <include
+                android:id="@+id/boardingTable"
+                layout="@layout/boarding_table"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvBoardingTime"
+                app:layout_constraintRight_toLeftOf="@+id/barCode"/>
+            <!--    =============== Bar Code View =======================-->
+
+            <ImageView
+                android:id="@+id/barCode"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitCenter"
+                android:src ="@drawable/barcode"
+                app:layout_constraintTop_toTopOf="@id/boardingTable"
+                app:layout_constraintLeft_toRightOf="@+id/boardingTable"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingTable" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

@@ -22,4 +22,7 @@
     <string name="seat">Seat</string>
 
 
+    <string name="countDownFormat">%1$02d:%2$02d</string>
+
+
 </resources>
