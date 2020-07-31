@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="airticket"
+            name="flightInfo"
             type="np.com.manishtuladhar.airticket.AirTicketPass" />
     </data>
 
@@ -52,7 +52,7 @@
         android:id="@+id/tvOriginAirport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{airticket.originCode}"
+        android:text="@{flightInfo.originCode}"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toBottomOf="@id/divider"
         app:layout_constraintLeft_toLeftOf="@id/leftRectangle"
@@ -63,7 +63,7 @@
         android:id="@+id/tvDestinationAirport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{airticket.destCode}"
+        android:text="@{flightInfo.destCode}"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toBottomOf="@id/divider"
         app:layout_constraintLeft_toLeftOf="@id/rightRectangle"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:text="@{airticket.flightCode}"
+        android:text="@{flightInfo.flightCode}"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorPrimary"

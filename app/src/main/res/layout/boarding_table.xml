@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="airticket"
+            name="boardingTable"
             type="np.com.manishtuladhar.airticket.AirTicketPass" />
     </data>
 
@@ -56,7 +56,7 @@
             android:id="@+id/tvTerminal"
             android:layout_width="120dp"
             android:layout_height="0dp"
-            android:text="@{airticket.departureTerminal}"
+            android:text="@{boardingTable.departureTerminal}"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -83,7 +83,7 @@
             android:id="@+id/tvGate"
             android:layout_width="120dp"
             android:layout_height="0dp"
-            android:text="@{airticket.departureGate}"
+            android:text="@{boardingTable.departureGate}"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -110,7 +110,7 @@
             android:id="@+id/tvSeat"
             android:layout_width="120dp"
             android:layout_height="0dp"
-            android:text="@{airticket.seatNumber}"
+            android:text="@{boardingTable.seatNumber}"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"

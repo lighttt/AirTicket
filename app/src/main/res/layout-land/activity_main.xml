@@ -56,6 +56,7 @@
             <include
                 android:id="@+id/flight_info"
                 layout="@layout/flight_info"
+                app:flightInfo="@{airticket}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPassengerName"
                 app:layout_constraintRight_toLeftOf="@id/tvDepartureLabel"
@@ -165,6 +166,7 @@
             <include
                 android:id="@+id/boardingTable"
                 layout="@layout/boarding_table"
+                app:boardingTable="@{airticket}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"

@@ -1,9 +1,13 @@
 package np.com.manishtuladhar.airticket;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.PersistableBundle;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -14,8 +18,11 @@ import np.com.manishtuladhar.airticket.utils.FakeAirTicketData;
 
 public class MainActivity extends AppCompatActivity {
 
-
     ActivityMainBinding mBinding;
+    private static final String TAG = "MainActivity";
+    CountDownTimer countDownTimer = null;
+    AirTicketPass fakeAirTicketData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +31,23 @@ public class MainActivity extends AppCompatActivity {
 
         //initialize data binding with view
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-        //class
-        AirTicketPass fakeAirTicketData = FakeAirTicketData.generateFakeAirTicketData();
+        if(savedInstanceState==null)
+        {
+            fakeAirTicketData = FakeAirTicketData.generateFakeAirTicketData();
+        }
+        else{
+            fakeAirTicketData = savedInstanceState.getParcelable("airticket");
+        }
         //time
-        timeFormats(fakeAirTicketData);
-        //image
-        mBinding.barCode.setImageResource(fakeAirTicketData.barCodeImageResource);
-        //display
-        mBinding.setAirticket(fakeAirTicketData);
-    }
+        if (fakeAirTicketData != null) {
+            timeFormats(fakeAirTicketData);
+            //image
+            mBinding.barCode.setImageResource(fakeAirTicketData.barCodeImageResource);
+            //display
+            mBinding.setAirticket(fakeAirTicketData);
+        }
+        }
+
 
     private void timeFormats(AirTicketPass ticketPass)
     {
@@ -46,15 +61,41 @@ public class MainActivity extends AppCompatActivity {
         mBinding.tvBoardingTime.setText(boardingTime);
         mBinding.tvDeparture.setText(departureTime);
 
-        //count down time
-        long totalMinutesUntilBoarding = ticketPass.getMinutesUntilBoarding();
-        long hoursUntilBoarding = TimeUnit.MINUTES.toHours(totalMinutesUntilBoarding);
-        long minuteLessUntilBoarding =
-        totalMinutesUntilBoarding - TimeUnit.HOURS.toMinutes(hoursUntilBoarding);
+     //count down time
+        countDownTimer = new CountDownTimer(ticketPass.getMillisUntilBoarding(),60000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long totalMinutesUntilBoarding = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
+                Log.e(TAG, "onTick: "+totalMinutesUntilBoarding);
+                long hoursUntilBoarding = TimeUnit.MINUTES.toHours(totalMinutesUntilBoarding);
+                Log.e(TAG, "onTick: "+hoursUntilBoarding);
+                long minuteLessUntilBoarding =
+                        totalMinutesUntilBoarding - TimeUnit.HOURS.toMinutes(hoursUntilBoarding);
+                Log.e(TAG, "onTick: "+minuteLessUntilBoarding);
+                String hoursAndMinutesUntilBoarding = getString(R.string.countDownFormat,hoursUntilBoarding,minuteLessUntilBoarding);
+                Log.e(TAG, "onTick: "+hoursAndMinutesUntilBoarding);
+                mBinding.tvBoardingInTime.setText(hoursAndMinutesUntilBoarding);
+            }
 
-        String hoursAndMinutesUntilBoarding = getString(R.string.countDownFormat,hoursUntilBoarding,minuteLessUntilBoarding);
+            @Override
+            public void onFinish() {
+                mBinding.tvBoardingInTime.setText("Completed");
+            }
+        }.start();
+    }
 
-        mBinding.tvBoardingInTime.setText(hoursAndMinutesUntilBoarding);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(countDownTimer!=null)
+        {
+            countDownTimer.cancel();
+        }
+    }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+       outState.putParcelable("airticket",fakeAirTicketData);
     }
 }
